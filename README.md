@@ -1,6 +1,6 @@
 # Build an AI Agent from Scratch Workshop
 
-- Watch the workshop on [Frontend Masters](https://frontendmasters.com/workshops/build-ai-agent/). 
+- Watch the workshop on [Frontend Masters](https://frontendmasters.com/workshops/build-ai-agent/).
 - View the [course notes](https://clumsy-humor-894.notion.site/Agent-from-scratch-13554fed51a380749554c44aa8989406?pvs=4)
 
 ## Setup Instructions
@@ -16,18 +16,33 @@ git checkout step/1
 npm install # or bun install
 ```
 
-To run the project:
+## Run
 
 ```bash
-npm start
+npm start -- "Twoje pytanie"
 # or
-bun run index.ts
+bun run index.ts "Twoje pytanie"
+```
+
+## Scripts
+
+```bash
+npm run typecheck
+npm test
 ```
 
 ## OpenAI API Key
 
 Create an [API Key from OpenAI](https://platform.openai.com/settings/organization/api-keys) and save it in a `.env` file:
 
-```
+```bash
 OPENAI_API_KEY='YOUR_API_KEY'
 ```
+
+## Current MVP architecture
+
+- `index.ts` handles CLI input and runs `runAgent`.
+- `src/agent.ts` composes the conversation (system + user), calls the LLM, and returns answer + history.
+- `src/memory.ts` stores in-memory conversation messages.
+- `src/llm.ts` sends messages to OpenAI and validates non-empty responses.
+- `src/toolRunner.ts` contains the base tool execution helper.
