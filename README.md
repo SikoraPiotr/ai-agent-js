@@ -2,7 +2,7 @@
 
 To repo zaczynało jako materiał do warsztatu "Build an AI Agent from Scratch", a teraz rozwijamy je w kierunku:
 
-**AI, które pomaga pisać lepsze prompty dla innego AI.**
+**AI, które pomaga pisać lepsze prompty dla agentów do kodu i obliczeń.**
 
 ## Dlaczego ten kierunek
 
@@ -55,6 +55,16 @@ OPENAI_API_KEY='YOUR_API_KEY'
 - `src/memory.ts` trzyma historię wiadomości w pamięci procesu.
 - `src/toolRunner.ts` to podstawowy runner narzędzi pod kolejne kroki.
 
+## Aktualny flow Prompt Coacha (per sesja)
+
+1. Agent robi krótką parafrazę celu usera.
+2. Jeśli brakuje danych — zadaje maksymalnie 3 pytania doprecyzowujące.
+3. Gdy dane są kompletne — buduje:
+   - FINALNY PROMPT
+   - ANTY-PROMPT
+   - CHECKLISTĘ jakości
+   - 2 pomysły cross-domain
+
 ## Optymalizacja tokenów (obecnie)
 
 Agent ma teraz prostą warstwę kontroli kosztu:
@@ -70,7 +80,7 @@ Agent ma teraz prostą warstwę kontroli kosztu:
    - gotowe szkielety promptów dla: kodu, marketingu, analizy danych, UX.
 3. **Ocena jakości promptu**
    - scoring: precyzja, kompletność, testowalność, ryzyko halucynacji.
-4. **Pamięć sesji**
+4. **Pamięć sesji (następny etap)**
    - zapis sesji promptowych do `lowdb` z historią iteracji.
 5. **Tooling research**
    - narzędzia do szybkiego zbierania kontekstu z URL / dokumentu.
