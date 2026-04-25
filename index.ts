@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { runLLM } from './src/llm'
+import { runAgent } from './src/agent'
 
 const userMessage = process.argv[2]
 
@@ -8,7 +8,6 @@ if (!userMessage) {
   process.exit(1)
 }
 
+const result = await runAgent({ userMessage })
 
-const response = await runLLM({userMessage});
-
-console.log(response);
+console.log(result.response)
